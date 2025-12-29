@@ -26,13 +26,14 @@ export default function AppointmentsPage() {
   });
 
   const serviceTypes = [
-    { value: 'Home Care & Personal Assistance', label: 'Home Care & Personal Assistance' },
-    { value: 'Skilled Nursing Support', label: 'Skilled Nursing Support' },
-    { value: 'Developmental Disability Services', label: 'Developmental Disability Services' },
-    { value: 'Community Integration', label: 'Community Integration' },
-    { value: 'Respite Care', label: 'Respite Care' },
-    { value: 'Post-Hospital Recovery', label: 'Post-Hospital Recovery' },
-    { value: 'Live-in Care', label: 'Live-in Care' },
+    { value: 'Personal Care Services', label: 'Personal Care Services' },
+    { value: 'Homemaker Services', label: 'Homemaker Services' },
+    { value: 'IHSS (In-Home Support Services)', label: 'IHSS (In-Home Support Services)' },
+    { value: 'IRSS (Residential Services & Support)', label: 'IRSS (Residential Services & Support)' },
+    { value: 'Community Connector', label: 'Community Connector' },
+    { value: 'Supported Community Connections', label: 'Supported Community Connections' },
+    { value: 'Mentorship Services', label: 'Mentorship Services' },
+    { value: 'Life Skills Development', label: 'Life Skills Development' },
     { value: 'Other', label: 'Other' },
   ];
 
@@ -239,7 +240,7 @@ export default function AppointmentsPage() {
             </div>
             <div className="card">
               <div className="text-primary-600 font-bold text-lg mb-2">Questions?</div>
-              <p className="text-gray-600">Call us at (555) 123-4567</p>
+              <p className="text-gray-600">Call us at (720) 668-1225</p>
             </div>
           </div>
         </motion.div>
