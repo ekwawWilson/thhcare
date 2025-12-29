@@ -44,7 +44,7 @@ export default function WhoWeServePage() {
               </p>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-6 h-6 bg-secondary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
                   </div>
                   <div>
@@ -53,7 +53,7 @@ export default function WhoWeServePage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-6 h-6 bg-secondary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
                   </div>
                   <div>
@@ -62,7 +62,7 @@ export default function WhoWeServePage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-6 h-6 bg-secondary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
                   </div>
                   <div>
@@ -71,7 +71,7 @@ export default function WhoWeServePage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-6 h-6 bg-secondary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
                   </div>
                   <div>

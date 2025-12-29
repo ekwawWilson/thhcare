@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Heart, Users, Home, Shield, Clock, Award } from "lucide-react";
 import HeroSlider from "@/components/ui/HeroSlider";
 import PictureGallery from "@/components/ui/PictureGallery";
+import { image } from "framer-motion/client";
 
 export default function HomePage() {
   const fadeInUp = {
@@ -26,94 +27,80 @@ export default function HomePage() {
     {
       type: "image" as const,
       src: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=1920&h=1080&fit=crop",
-      title: "Compassionate Senior Care",
+      title: "Personal Care Services",
       description:
-        "Helping seniors live independently in the comfort of their own homes with dignity and respect.",
+        "Comprehensive assistance with feeding, bathing, toileting, medication reminders, and meal preparation in the comfort of your home.",
     },
     {
       type: "image" as const,
-      src: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1920&h=1080&fit=crop",
-      title: "Professional Caregivers",
+      src: "/images/disability.jpg",
+      title: "Support for IDD Individuals",
       description:
-        "Our trained and licensed professionals provide personalized care tailored to your needs.",
+        "Specialized services for persons with intellectual and developmental disabilities to be healthy, safe, and active community members.",
     },
     {
       type: "image" as const,
-      src: "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=1920&h=1080&fit=crop",
-      title: "Community Support Services",
+      src: "/images/developmental.jpeg",
+      title: "Community Integration",
       description:
-        "Promoting inclusion and independence through community-based support programs.",
+        "Community Connector and Supported Community Connections helping individuals discover resources and build meaningful social connections.",
     },
     {
       type: "image" as const,
-      src: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1920&h=1080&fit=crop",
-      title: "Family-Centered Care",
+      src: "/images/home-health.webp",
+      title: "Person-Centered Approach",
       description:
-        "We partner with families to deliver comprehensive, coordinated care that improves quality of life.",
+        "Individualized support plans that respect personal choices, preferences, and goals for independent living.",
+    },
+    {
+      type: "image" as const,
+      src: "/images/caregiver-assisting.webp",
+      title: "Adults Home Care",
+      description: "Companionship, conversation, and emotional support.",
     },
   ];
 
   // Gallery images data
   const galleryImages = [
     {
-      src: "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?w=800&h=800&fit=crop",
+      src: "/images/Community.jpg",
       alt: "Caregiver helping senior with daily activities",
       title: "Daily Living Support",
     },
     {
-      src: "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&h=800&fit=crop",
+      src: "/images/Caregiver1.jpg",
       alt: "Home health nurse checking vitals",
       title: "Professional Health Monitoring",
     },
     {
-      src: "https://images.unsplash.com/photo-1581579186913-45ac3e6efe93?w=800&h=800&fit=crop",
+      src: "/images/seniors.jpg",
       alt: "Senior enjoying outdoor activities with caregiver",
       title: "Outdoor Activities & Companionship",
     },
     {
-      src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&h=800&fit=crop",
+      src: "/images/bigstock-Senior.jpg",
       alt: "Caregiver and senior cooking together",
       title: "Meal Preparation & Nutrition",
     },
     {
-      src: "https://images.unsplash.com/photo-1581579191396-7b1e49deb129?w=800&h=800&fit=crop",
+      src: "/images/physical.avif",
       alt: "Physical therapy session at home",
       title: "Rehabilitation Services",
     },
     {
-      src: "https://images.unsplash.com/photo-1522037576655-7a93ce0f4d10?w=800&h=800&fit=crop",
+      src: "/images/Care-Coordination.jpg",
       alt: "Family meeting with care coordinator",
       title: "Family Consultation",
     },
     {
-      src: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&h=800&fit=crop",
+      src: "/images/fun-activities-elderly.jpg",
       alt: "Senior participating in group activities",
       title: "Community Engagement",
     },
     {
-      src: "https://images.unsplash.com/photo-1504439904031-93ded9f93e4e?w=800&h=800&fit=crop",
+      src: "/images/tips_for_choosing.jpg",
       alt: "Caregiver reading with senior",
       title: "Cognitive Stimulation",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=800&fit=crop",
-      alt: "Home safety assessment",
-      title: "Home Safety & Modifications",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1581579186913-45ac3e6efe93?w=800&h=800&fit=crop",
-      alt: "Senior enjoying garden time",
-      title: "Outdoor Therapy",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1581579186896-ab46a0bf1ff8?w=800&h=800&fit=crop",
-      alt: "Medication management support",
-      title: "Medication Management",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?w=800&h=800&fit=crop",
-      alt: "Respite care for family caregivers",
-      title: "Respite Care Services",
     },
   ];
 
@@ -154,8 +141,9 @@ export default function HomePage() {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-xl md:text-2xl mb-8 text-primary-100 max-w-3xl mx-auto"
             >
-              Providing compassionate home care and services that promote
-              dignity.
+              Administering care, support and resources to clients in the
+              comfort of their homes. Assisting persons with IDD to be healthy,
+              safe and active members of their community.
             </motion.p>
 
             <motion.div
@@ -243,8 +231,8 @@ export default function HomePage() {
                 variants={fadeInUp}
                 className="text-center"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
-                  <item.icon className="w-8 h-8 text-primary-600" />
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary-100 rounded-full mb-4">
+                  <item.icon className="w-8 h-8 text-secondary-500" />
                 </div>
                 <p className="text-gray-700 font-semibold">{item.text}</p>
               </motion.div>
@@ -274,44 +262,54 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Home Care & Daily Living Support",
+                title: "Personal Care & Homemaker Services",
                 description:
-                  "Assistance with personal care, meal preparation, medication reminders, and daily activities to help you maintain independence at home.",
+                  "Comprehensive assistance with feeding, bathing, toileting, incontinence care, medication reminders, meal preparation, housekeeping, laundry, cooking, and shopping.",
                 icon: Home,
-                gradient: "from-blue-500 to-cyan-500",
+                image: "/images/Health-Nursing.jpg",
               },
               {
-                title: "Developmental & Community Services",
+                title: "IHSS & IRSS Support",
                 description:
-                  "Residential support, community integration, and life skills coaching for individuals with developmental disabilities.",
+                  "In-Home Support Services and Individual Residential Services for persons with intellectual and developmental disabilities to maintain independence in their homes and communities.",
                 icon: Users,
-                gradient: "from-purple-500 to-pink-500",
+                image: "/images/cooking.jpg",
               },
               {
-                title: "Companionship & Life Skills",
+                title: "Community Connections & Mentorship",
                 description:
-                  "Meaningful social interaction, mentorship, and support for building independence and community connections.",
+                  "Community Connector and Supported Community Connections services that help individuals discover resources, build social connections, and participate fully in community life.",
                 icon: Heart,
-                gradient: "from-orange-500 to-red-500",
+                image: "/images/parkcare.png",
               },
             ].map((service, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
                 whileHover={{ y: -10 }}
-                className="card group cursor-pointer"
+                className="card overflow-hidden group cursor-pointer p-0"
               >
-                <div
-                  className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200`}
-                >
-                  <service.icon className="w-8 h-8 text-white" />
+                {/* Image Section */}
+                <div className="h-48 overflow-hidden">
+                  <div
+                    className="w-full h-full bg-cover bg-center transform group-hover:scale-105 transition-transform duration-300"
+                    style={{ backgroundImage: `url(${service.image})` }}
+                  />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {service.description}
-                </p>
+                {/* Content Section */}
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center">
+                      <service.icon className="w-6 h-6 text-secondary-500" />
+                    </div>
+                    <h3 className="text-xl font-bold text-secondary-500">
+                      {service.title}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -338,22 +336,22 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Seniors Aging in Place",
+                title: "Seniors & Adults Needing Home Care",
                 description:
-                  "Supporting older adults to live independently and comfortably in their own homes with dignity and respect.",
-                image: "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=800&h=500&fit=crop",
+                  "Personal care and homemaker services to help older adults and individuals maintain independence in their own homes throughout the Denver Metro area.",
+                image: "/images/img2.jpg",
               },
               {
-                title: "Individuals with Developmental Disabilities",
+                title: "Individuals with IDD",
                 description:
-                  "Comprehensive support services designed to promote independence, inclusion, and quality of life.",
-                image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=500&fit=crop",
+                  "Comprehensive IHSS, IRSS, and community-based support services for persons with intellectual and developmental disabilities in Arapahoe, Douglas, Elbert, Denver, Adams, and Jefferson Counties.",
+                image: "/images/Picture1-2.jpg",
               },
               {
-                title: "Families Seeking Support",
+                title: "Colorado Families & Communities",
                 description:
-                  "Respite care, long-term assistance, and recovery support for families navigating caregiving challenges.",
-                image: "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&h=500&fit=crop",
+                  "Serving families throughout the Front Range with person-centered care, mentorship, and community integration services that promote dignity and inclusion.",
+                image: "/images/community-health.jpg",
               },
             ].map((audience, index) => (
               <motion.div
@@ -370,7 +368,7 @@ export default function HomePage() {
                 </div>
                 {/* Card Content */}
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-primary-600 mb-4">
+                  <h3 className="text-2xl font-bold text-secondary-500 mb-4">
                     {audience.title}
                   </h3>
                   <p className="text-gray-600 leading-relaxed">

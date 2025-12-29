@@ -90,8 +90,8 @@ export default function AppointmentsPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
-            <Calendar className="w-8 h-8 text-primary-600" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary-100 rounded-full mb-4">
+            <Calendar className="w-8 h-8 text-secondary-500" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Book an Appointment
@@ -126,7 +126,7 @@ export default function AppointmentsPage() {
             {/* Personal Information */}
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <Heart className="w-6 h-6 text-primary-600" />
+                <Heart className="w-6 h-6 text-secondary-500" />
                 Personal Information
               </h2>
               <div className="grid md:grid-cols-2 gap-6">
@@ -166,7 +166,7 @@ export default function AppointmentsPage() {
             {/* Appointment Details */}
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <Clock className="w-6 h-6 text-primary-600" />
+                <Clock className="w-6 h-6 text-secondary-500" />
                 Appointment Preferences
               </h2>
               <div className="grid md:grid-cols-2 gap-6">

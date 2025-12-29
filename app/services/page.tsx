@@ -2,30 +2,89 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Home, Heart, Stethoscope, Users, Calendar, Lightbulb, Shield, HandHeart } from 'lucide-react';
 
 export default function ServicesPage() {
   const homeServices = [
-    { icon: Heart, title: 'Personal Care', description: 'Bathing, grooming, dressing assistance' },
-    { icon: Stethoscope, title: 'Medication Reminders', description: 'Ensuring medications are taken properly' },
-    { icon: Home, title: 'Meal Preparation', description: 'Nutritious meals tailored to dietary needs' },
-    { icon: HandHeart, title: 'Light Housekeeping', description: 'Maintaining a clean, safe environment' },
-    { icon: Users, title: 'Companionship', description: 'Meaningful social interaction and support' },
-    { icon: Shield, title: 'Respite Care', description: 'Temporary relief for family caregivers' },
+    {
+      icon: Heart,
+      title: 'Personal Care Services',
+      description: 'Comprehensive assistance with feeding, bathing, toileting, incontinence care, medication reminders, and meal preparation to support daily living activities.',
+      image: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&h=500&fit=crop'
+    },
+    {
+      icon: Home,
+      title: 'Homemaker Services',
+      description: 'Housekeeping, laundry, cooking, shopping, medication reminders, and meal preparation to maintain a comfortable and safe home environment.',
+      image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&h=500&fit=crop'
+    },
+    {
+      icon: Stethoscope,
+      title: 'IHSS (In-Home Support Services)',
+      description: 'Specialized support for individuals with intellectual and developmental disabilities to maintain independence in their homes.',
+      image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&h=500&fit=crop'
+    },
+    {
+      icon: Users,
+      title: 'IRSS (Residential Services & Support)',
+      description: 'Individual residential services and support for persons with intellectual and developmental disabilities living in community settings.',
+      image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=500&fit=crop'
+    },
+    {
+      icon: Lightbulb,
+      title: 'Community Connector',
+      description: 'Short-term services helping individuals discover and connect with community resources, supports, and recreational opportunities.',
+      image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=500&fit=crop'
+    },
+    {
+      icon: HandHeart,
+      title: 'Supported Community Connections',
+      description: 'Ongoing support for individuals to participate fully in community life through access to resources, activities, and social connections.',
+      image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=500&fit=crop'
+    },
   ];
 
   const skilledServices = [
-    { title: 'Post-Hospital Recovery', description: 'Transitional care after hospital discharge' },
-    { title: 'Fall Prevention', description: 'Assessment and safety modifications' },
-    { title: 'Chronic Condition Support', description: 'Managing ongoing health conditions' },
-    { title: 'Vital Signs Monitoring', description: 'Regular health status checks' },
+    {
+      title: 'Mentorship Services',
+      description: 'Guidance and support to help individuals develop skills, build confidence, and achieve personal goals in home and community settings.'
+    },
+    {
+      title: 'Life Skills Development',
+      description: 'Training in daily living skills, money management, social interactions, and independent living to promote self-sufficiency.'
+    },
+    {
+      title: 'Health & Wellness Support',
+      description: 'Assistance with medication management, appointment scheduling, and coordination of healthcare services to maintain optimal health.'
+    },
+    {
+      title: 'Family Support Services',
+      description: 'Respite care and family consultation services to support caregivers and families in their care journey.'
+    },
   ];
 
   const developmentalServices = [
-    { icon: Home, title: 'Residential Support', description: 'In-home assistance for daily living' },
-    { icon: Users, title: 'Community Integration', description: 'Social inclusion and participation' },
-    { icon: Lightbulb, title: 'Life Skills Coaching', description: 'Building independence and capabilities' },
-    { icon: HandHeart, title: 'Mentorship Programs', description: 'Guidance and personal development' },
+    {
+      icon: Shield,
+      title: 'Safety & Advocacy',
+      description: 'Ensuring safe environments and advocating for the rights and needs of individuals with IDD in all settings.'
+    },
+    {
+      icon: Users,
+      title: 'Social Integration',
+      description: 'Supporting meaningful relationships, social connections, and full participation in community activities.'
+    },
+    {
+      icon: Calendar,
+      title: 'Activity Planning',
+      description: 'Coordinating recreational activities, community events, and social opportunities tailored to individual interests.'
+    },
+    {
+      icon: HandHeart,
+      title: 'Person-Centered Care',
+      description: 'Individualized support plans that respect personal choices, preferences, and goals for independent living.'
+    },
   ];
 
   return (
@@ -55,8 +114,8 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Home Care Services</h2>
-            <p className="text-xl text-gray-600">Supporting independence and comfort at home</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Core Care Services</h2>
+            <p className="text-xl text-gray-600">Comprehensive support for daily living and independence</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -68,13 +127,24 @@ export default function ServicesPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="card group"
+                className="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <service.icon className="w-6 h-6 text-white" />
+                <div className="relative h-48 w-full overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <service.icon className="w-6 h-6 text-white" />
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
+                  <p className="text-gray-600">{service.description}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -83,16 +153,16 @@ export default function ServicesPage() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="mt-12 card bg-primary-50 border-2 border-primary-200"
+            className="mt-12 card bg-secondary-50 border-2 border-secondary-200"
           >
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0">
-                <Calendar className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 bg-secondary-600 rounded-full flex items-center justify-center flex-shrink-0">
+                <Heart className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-primary-900 mb-2">Live-In Care Available</h3>
-                <p className="text-primary-800">
-                  For those who need continuous support, we offer 24/7 live-in care services with trained professionals.
+                <h3 className="text-xl font-bold text-secondary-900 mb-2">Person-Centered Approach</h3>
+                <p className="text-secondary-800">
+                  All our services are tailored to each individual&apos;s unique needs, preferences, and goals, ensuring personalized care that promotes dignity and independence.
                 </p>
               </div>
             </div>
@@ -109,8 +179,8 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Skilled & Wellness Support</h2>
-            <p className="text-xl text-gray-600">Professional healthcare services for optimal wellbeing</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Additional Support Services</h2>
+            <p className="text-xl text-gray-600">Enhanced care and mentorship for personal growth</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -139,8 +209,8 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Developmental & Community Support</h2>
-            <p className="text-xl text-gray-600">Empowering independence and community inclusion</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Community & Developmental Support</h2>
+            <p className="text-xl text-gray-600">Promoting community integration and person-centered care</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -21,28 +21,21 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 relative pl-20 md:pl-24">
-            {/* Floating Circular Logo Container */}
-            <div className="absolute -top-4 md:-top-6 -left-2 md:-left-4 w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden bg-white shadow-2xl transform hover:scale-105 transition-transform duration-300">
+          <Link href="/" className="flex items-center relative">
+            {/* Floating Rectangular Logo */}
+            <div className="absolute -top-8 md:-top-10 left-0 h-28 w-64 md:h-32 md:w-72 overflow-hidden bg-white rounded-lg shadow-2xl  border-primary-200 transform hover:scale-105 transition-transform duration-300 z-10">
               <Image
-                src="/images/logo.png"
-                alt="Transformation Home Health LLC Logo"
+                src="/images/logolon2.jpg"
+                alt="Transformation Home Health LLC"
                 fill
-                className="object-cover"
+                className="object-contain p-2"
                 priority
               />
             </div>
-            {/* Text */}
-            <div className="flex flex-col">
-              <div className="text-lg md:text-xl font-bold text-primary-600 leading-tight">
-                Transformation
-              </div>
-              <div className="text-[10px] md:text-xs text-gray-600 leading-tight">
-                Home Health LLC
-              </div>
-            </div>
+            {/* Spacer to prevent overlap with nav items */}
+            <div className="w-64 md:w-72 h-1"></div>
           </Link>
 
           {/* Desktop Navigation */}

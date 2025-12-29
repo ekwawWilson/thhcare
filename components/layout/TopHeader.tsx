@@ -35,11 +35,11 @@ export default function TopHeader() {
             </a>
             <span className="hidden md:inline text-primary-300">|</span>
             <a
-              href="mailto:info@transformationhomehealth.com"
+              href="mailto:Transformationhomehealth@gmail.com"
               className="hidden md:flex items-center gap-2 hover:text-primary-200 transition-colors"
             >
               <Mail className="w-4 h-4" />
-              <span>info@transformationhomehealth.com</span>
+              <span>Transformationhomehealth@gmail.com</span>
             </a>
           </div>
 

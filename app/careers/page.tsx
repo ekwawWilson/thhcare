@@ -132,8 +132,8 @@ export default function CareersPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
-            <Briefcase className="w-8 h-8 text-primary-600" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary-100 rounded-full mb-4">
+            <Briefcase className="w-8 h-8 text-secondary-500" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Join Our Team
@@ -151,22 +151,22 @@ export default function CareersPage() {
           className="grid md:grid-cols-3 gap-6 mb-12"
         >
           <div className="card text-center">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-primary-100 rounded-full mb-4">
-              <Award className="w-6 h-6 text-primary-600" />
+            <div className="inline-flex items-center justify-center w-12 h-12 bg-secondary-100 rounded-full mb-4">
+              <Award className="w-6 h-6 text-secondary-500" />
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">Competitive Benefits</h3>
             <p className="text-gray-600">Comprehensive benefits package and competitive pay</p>
           </div>
           <div className="card text-center">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-primary-100 rounded-full mb-4">
-              <Users className="w-6 h-6 text-primary-600" />
+            <div className="inline-flex items-center justify-center w-12 h-12 bg-secondary-100 rounded-full mb-4">
+              <Users className="w-6 h-6 text-secondary-500" />
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">Supportive Team</h3>
             <p className="text-gray-600">Work with dedicated professionals who care</p>
           </div>
           <div className="card text-center">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-primary-100 rounded-full mb-4">
-              <Briefcase className="w-6 h-6 text-primary-600" />
+            <div className="inline-flex items-center justify-center w-12 h-12 bg-secondary-100 rounded-full mb-4">
+              <Briefcase className="w-6 h-6 text-secondary-500" />
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">Career Growth</h3>
             <p className="text-gray-600">Ongoing training and advancement opportunities</p>

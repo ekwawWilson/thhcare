@@ -71,8 +71,8 @@ export default function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
-            <Mail className="w-8 h-8 text-primary-600" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary-100 rounded-full mb-4">
+            <Mail className="w-8 h-8 text-secondary-500" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Get in Touch
@@ -95,8 +95,8 @@ export default function ContactPage() {
 
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <Phone className="w-5 h-5 text-primary-600" />
+                  <div className="flex-shrink-0 w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-secondary-500" />
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900 mb-1">Phone</div>
@@ -118,40 +118,39 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-primary-600" />
+                  <div className="flex-shrink-0 w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-secondary-500" />
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900 mb-1">Email</div>
-                    <a href="mailto:info@transformationhomehealth.com" className="text-gray-600 hover:text-primary-600 transition-colors break-all">
-                      info@transformationhomehealth.com
+                    <a href="mailto:Transformationhomehealth@gmail.com" className="text-gray-600 hover:text-primary-600 transition-colors break-all">
+                      Transformationhomehealth@gmail.com
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-primary-600" />
+                  <div className="flex-shrink-0 w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-secondary-500" />
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900 mb-1">Address</div>
                     <p className="text-gray-600">
-                      123 Healthcare Drive<br />
-                      Suite 100<br />
-                      Your City, ST 12345
+                      21622 E. Alamo Pl<br />
+                      Centennial, CO 80015
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-primary-600" />
+                  <div className="flex-shrink-0 w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-secondary-500" />
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900 mb-1">Office Hours</div>
                     <p className="text-gray-600">
-                      Monday - Friday: 8:00 AM - 6:00 PM<br />
-                      Saturday: 9:00 AM - 3:00 PM<br />
+                      Monday - Friday: 8:00 AM - 5:00 PM<br />
+                      Saturday: Closed<br />
                       Sunday: Closed
                     </p>
                   </div>
@@ -160,16 +159,16 @@ export default function ContactPage() {
             </div>
 
             <div className="card bg-gradient-to-br from-primary-50 to-primary-100 border border-primary-200">
-              <h3 className="font-bold text-primary-900 mb-2">24/7 Emergency Support</h3>
+              <h3 className="font-bold text-primary-900 mb-2">Need Immediate Assistance?</h3>
               <p className="text-primary-800 text-sm mb-3">
-                For urgent care needs, our on-call team is available around the clock.
+                Contact us directly during business hours for prompt support.
               </p>
               <a
-                href="tel:5559876543"
+                href="tel:+17206681225"
                 className="inline-flex items-center gap-2 text-primary-600 font-bold hover:text-primary-700 transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                (555) 987-6543
+                +1 (720) 668-1225
               </a>
             </div>
           </motion.div>
