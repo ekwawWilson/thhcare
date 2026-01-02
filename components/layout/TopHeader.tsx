@@ -43,8 +43,8 @@ export default function TopHeader() {
             </a>
           </div>
 
-          {/* Social Icons and Language */}
-          <div className="flex items-center gap-4">
+          {/* Social Icons and Language - Hidden on mobile and medium screens */}
+          <div className="hidden lg:flex items-center gap-4">
             {/* Social Media Icons */}
             <div className="flex items-center gap-3">
               <a

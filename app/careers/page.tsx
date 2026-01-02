@@ -1,20 +1,26 @@
 "use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { careerApplicationSchema, type CareerApplicationInput } from '@/lib/validations/schemas';
-import Input from '@/components/ui/Input';
-import Textarea from '@/components/ui/Textarea';
-import Select from '@/components/ui/Select';
-import Button from '@/components/ui/Button';
-import Alert from '@/components/ui/Alert';
-import { Briefcase, Upload, Award, Users } from 'lucide-react';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  careerApplicationSchema,
+  type CareerApplicationInput,
+} from "@/lib/validations/schemas";
+import Input from "@/components/ui/Input";
+import Textarea from "@/components/ui/Textarea";
+import Select from "@/components/ui/Select";
+import Button from "@/components/ui/Button";
+import Alert from "@/components/ui/Alert";
+import { Briefcase, Upload, Award, Users } from "lucide-react";
 
 export default function CareersPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [alert, setAlert] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [alert, setAlert] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const {
@@ -27,39 +33,55 @@ export default function CareersPage() {
   });
 
   const positions = [
-    { value: 'Certified Nursing Assistant (CNA)', label: 'Certified Nursing Assistant (CNA)' },
-    { value: 'Licensed Practical Nurse (LPN)', label: 'Licensed Practical Nurse (LPN)' },
-    { value: 'Registered Nurse (RN)', label: 'Registered Nurse (RN)' },
-    { value: 'Personal Care Assistant', label: 'Personal Care Assistant' },
-    { value: 'Home Health Aide', label: 'Home Health Aide' },
-    { value: 'Direct Support Professional', label: 'Direct Support Professional' },
-    { value: 'Community Support Specialist', label: 'Community Support Specialist' },
-    { value: 'Care Coordinator', label: 'Care Coordinator' },
-    { value: 'Administrative Staff', label: 'Administrative Staff' },
-    { value: 'Other', label: 'Other' },
+    {
+      value: "Certified Nursing Assistant (CNA)",
+      label: "Certified Nursing Assistant (CNA)",
+    },
+    {
+      value: "Licensed Practical Nurse (LPN)",
+      label: "Licensed Practical Nurse (LPN)",
+    },
+    { value: "Registered Nurse (RN)", label: "Registered Nurse (RN)" },
+    { value: "Personal Care Assistant", label: "Personal Care Assistant" },
+    { value: "Home Health Aide", label: "Home Health Aide" },
+    {
+      value: "Direct Support Professional",
+      label: "Direct Support Professional",
+    },
+    {
+      value: "Community Support Specialist",
+      label: "Community Support Specialist",
+    },
+    { value: "Care Coordinator", label: "Care Coordinator" },
+    { value: "Administrative Staff", label: "Administrative Staff" },
+    { value: "Other", label: "Other" },
   ];
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       // Validate file type
-      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      const allowedTypes = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
       if (!allowedTypes.includes(file.type)) {
         setAlert({
-          type: 'error',
-          message: 'Invalid file type. Please upload a PDF or DOC/DOCX file.',
+          type: "error",
+          message: "Invalid file type. Please upload a PDF or DOC/DOCX file.",
         });
-        e.target.value = '';
+        e.target.value = "";
         return;
       }
 
       // Validate file size (10MB)
       if (file.size > 10 * 1024 * 1024) {
         setAlert({
-          type: 'error',
-          message: 'File size exceeds 10MB. Please upload a smaller file.',
+          type: "error",
+          message: "File size exceeds 10MB. Please upload a smaller file.",
         });
-        e.target.value = '';
+        e.target.value = "";
         return;
       }
 
@@ -71,8 +93,8 @@ export default function CareersPage() {
   const onSubmit = async (data: CareerApplicationInput) => {
     if (!selectedFile) {
       setAlert({
-        type: 'error',
-        message: 'Please upload your resume.',
+        type: "error",
+        message: "Please upload your resume.",
       });
       return;
     }
@@ -82,15 +104,15 @@ export default function CareersPage() {
 
     try {
       const formData = new FormData();
-      formData.append('fullName', data.fullName);
-      formData.append('email', data.email);
-      formData.append('phone', data.phone);
-      formData.append('positionApplied', data.positionApplied);
-      formData.append('message', data.message || '');
-      formData.append('resume', selectedFile);
+      formData.append("fullName", data.fullName);
+      formData.append("email", data.email);
+      formData.append("phone", data.phone);
+      formData.append("positionApplied", data.positionApplied);
+      formData.append("message", data.message || "");
+      formData.append("resume", selectedFile);
 
-      const response = await fetch('/api/careers/apply', {
-        method: 'POST',
+      const response = await fetch("/api/careers/apply", {
+        method: "POST",
         body: formData,
       });
 
@@ -98,25 +120,27 @@ export default function CareersPage() {
 
       if (response.ok) {
         setAlert({
-          type: 'success',
-          message: 'Application submitted successfully! We will review your application and contact you soon.',
+          type: "success",
+          message:
+            "Application submitted successfully! We will review your application and contact you soon.",
         });
         reset();
         setSelectedFile(null);
         // Reset file input
-        const fileInput = document.getElementById('resume') as HTMLInputElement;
-        if (fileInput) fileInput.value = '';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const fileInput = document.getElementById("resume") as HTMLInputElement;
+        if (fileInput) fileInput.value = "";
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         setAlert({
-          type: 'error',
-          message: result.error || 'Failed to submit application. Please try again.',
+          type: "error",
+          message:
+            result.error || "Failed to submit application. Please try again.",
         });
       }
     } catch (error) {
       setAlert({
-        type: 'error',
-        message: 'An unexpected error occurred. Please try again later.',
+        type: "error",
+        message: "An unexpected error occurred. Please try again later.",
       });
     } finally {
       setIsSubmitting(false);
@@ -139,7 +163,8 @@ export default function CareersPage() {
             Join Our Team
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Make a difference in people&apos;s lives. Join our compassionate team of healthcare professionals.
+            Make a difference in people&apos;s lives. Join our compassionate
+            team of healthcare professionals.
           </p>
         </motion.div>
 
@@ -154,22 +179,34 @@ export default function CareersPage() {
             <div className="inline-flex items-center justify-center w-12 h-12 bg-secondary-100 rounded-full mb-4">
               <Award className="w-6 h-6 text-secondary-500" />
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">Competitive Benefits</h3>
-            <p className="text-gray-600">Comprehensive benefits package and competitive pay</p>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">
+              Competitive Benefits
+            </h3>
+            <p className="text-gray-600">
+              Comprehensive benefits package and competitive pay
+            </p>
           </div>
           <div className="card text-center">
             <div className="inline-flex items-center justify-center w-12 h-12 bg-secondary-100 rounded-full mb-4">
               <Users className="w-6 h-6 text-secondary-500" />
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">Supportive Team</h3>
-            <p className="text-gray-600">Work with dedicated professionals who care</p>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">
+              Supportive Team
+            </h3>
+            <p className="text-gray-600">
+              Work with dedicated professionals who care
+            </p>
           </div>
           <div className="card text-center">
             <div className="inline-flex items-center justify-center w-12 h-12 bg-secondary-100 rounded-full mb-4">
               <Briefcase className="w-6 h-6 text-secondary-500" />
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">Career Growth</h3>
-            <p className="text-gray-600">Ongoing training and advancement opportunities</p>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">
+              Career Growth
+            </h3>
+            <p className="text-gray-600">
+              Ongoing training and advancement opportunities
+            </p>
           </div>
         </motion.div>
 
@@ -202,7 +239,7 @@ export default function CareersPage() {
             <div className="grid md:grid-cols-2 gap-6">
               <Input
                 label="Full Name"
-                {...register('fullName')}
+                {...register("fullName")}
                 error={errors.fullName?.message}
                 placeholder="John Doe"
                 required
@@ -210,7 +247,7 @@ export default function CareersPage() {
               <Input
                 label="Email Address"
                 type="email"
-                {...register('email')}
+                {...register("email")}
                 error={errors.email?.message}
                 placeholder="john@example.com"
                 required
@@ -218,14 +255,14 @@ export default function CareersPage() {
               <Input
                 label="Phone Number"
                 type="tel"
-                {...register('phone')}
+                {...register("phone")}
                 error={errors.phone?.message}
                 placeholder="(555) 123-4567"
                 required
               />
               <Select
                 label="Position Applied For"
-                {...register('positionApplied')}
+                {...register("positionApplied")}
                 error={errors.positionApplied?.message}
                 options={positions}
                 required
@@ -252,7 +289,10 @@ export default function CareersPage() {
                         </span>
                       ) : (
                         <>
-                          <span className="font-semibold text-primary-600">Click to upload</span> or drag and drop
+                          <span className="font-semibold text-primary-600">
+                            Click to upload
+                          </span>{" "}
+                          or drag and drop
                         </>
                       )}
                     </div>
@@ -276,7 +316,7 @@ export default function CareersPage() {
             <div>
               <Textarea
                 label="Tell us about yourself (Optional)"
-                {...register('message')}
+                {...register("message")}
                 error={errors.message?.message}
                 placeholder="Share your experience, qualifications, and why you'd like to join our team..."
                 rows={6}
@@ -286,7 +326,10 @@ export default function CareersPage() {
             {/* Privacy Notice */}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
               <p className="text-sm text-gray-700">
-                <strong>Equal Opportunity Employer:</strong> We are committed to diversity and do not discriminate on the basis of race, color, religion, gender, sexual orientation, national origin, age, disability, or any other protected characteristic.
+                <strong>Equal Opportunity Employer:</strong> We are committed to
+                diversity and do not discriminate on the basis of race, color,
+                religion, gender, sexual orientation, national origin, age,
+                disability, or any other protected characteristic.
               </p>
             </div>
 
@@ -298,7 +341,9 @@ export default function CareersPage() {
                 isLoading={isSubmitting}
                 className="w-full md:w-auto min-w-[300px]"
               >
-                {isSubmitting ? 'Submitting Application...' : 'Submit Application'}
+                {isSubmitting
+                  ? "Submitting Application..."
+                  : "Submit Application"}
               </Button>
             </div>
           </form>
@@ -313,8 +358,20 @@ export default function CareersPage() {
         >
           <p>Questions about the application process?</p>
           <p className="mt-2">
-            Email us at <a href="mailto:careers@transformationhomehealth.com" className="text-primary-600 hover:text-primary-700 font-semibold">careers@transformationhomehealth.com</a>
-            {' '}or call <a href="tel:5551234567" className="text-primary-600 hover:text-primary-700 font-semibold">(555) 123-4567</a>
+            Email us at{" "}
+            <a
+              href="mailto:Transformationhomehealth@gmail.com"
+              className="text-primary-600 hover:text-primary-700 font-semibold"
+            >
+              Transformationhomehealth@gmail.com
+            </a>{" "}
+            or call{" "}
+            <a
+              href="tel:5551234567"
+              className="text-primary-600 hover:text-primary-700 font-semibold"
+            >
+              +1 (202) 390-3257
+            </a>
           </p>
         </motion.div>
       </div>

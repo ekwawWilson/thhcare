@@ -3,82 +3,30 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Heart,
-  Target,
-  Eye,
-  Award,
-  Users,
-  Shield,
-  Lightbulb,
-  HandHeart,
-} from "lucide-react";
+import { Target } from "lucide-react";
 
 export default function AboutPage() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 },
-  };
-
-  const values = [
-    {
-      icon: Heart,
-      title: "Person-Centered Care",
-      description:
-        "Individualized support plans that respect personal choices, preferences, and goals.",
-      gradient: "from-red-500 to-pink-500",
-    },
-    {
-      icon: Shield,
-      title: "Safety & Well-being",
-      description:
-        "Ensuring healthy, safe environments for all individuals in home and community settings.",
-      gradient: "from-blue-500 to-cyan-500",
-    },
-    {
-      icon: Users,
-      title: "Community Integration",
-      description:
-        "Supporting active participation and meaningful connections in community life.",
-      gradient: "from-purple-500 to-pink-500",
-    },
-    {
-      icon: Award,
-      title: "Professional Excellence",
-      description:
-        "Delivering high-quality care with trained professionals and evidence-based practices.",
-      gradient: "from-green-500 to-emerald-500",
-    },
-    {
-      icon: Lightbulb,
-      title: "Independence & Empowerment",
-      description:
-        "Building life skills and capabilities to support independent living and self-determination.",
-      gradient: "from-yellow-500 to-orange-500",
-    },
-    {
-      icon: HandHeart,
-      title: "Dignity & Respect",
-      description:
-        "Honoring the worth, rights, and individuality of every person we serve.",
-      gradient: "from-indigo-500 to-purple-500",
-    },
-  ];
-
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-600 to-primary-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative h-[500px] overflow-hidden">
+        <Image
+          src="/images/Caregiver1.jpg"
+          alt="About Us"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/60 to-black/30"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
+            className="text-center text-white"
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6">About Us</h1>
-            <p className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto">
               Dedicated to transforming lives through compassionate,
               person-centered care
             </p>
@@ -210,51 +158,6 @@ export default function AboutPage() {
                 className="object-cover"
               />
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Our Core Values
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The principles that guide everything we do
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {values.map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="card group cursor-pointer"
-              >
-                <div
-                  className={`w-14 h-14 bg-gradient-to-br ${value.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200`}
-                >
-                  <value.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {value.description}
-                </p>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>

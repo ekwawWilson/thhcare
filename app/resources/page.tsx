@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   BookOpen,
   FileText,
@@ -139,18 +140,26 @@ export default function ResourcesPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-primary-600 to-primary-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative h-[500px] overflow-hidden">
+        <Image
+          src="/images/community-health.jpg"
+          alt="Resources"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/60 to-black/30"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center"
+            className="text-center text-white"
           >
             <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-6">
               <BookOpen className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">Resources</h1>
-            <p className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto">
               Educational resources, partner organizations, and service
               information for Colorado families
             </p>

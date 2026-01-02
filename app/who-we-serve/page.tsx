@@ -2,21 +2,30 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Users, Heart, Home, Shield, Smile, HandHeart } from 'lucide-react';
 
 export default function WhoWeServePage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-primary-600 to-primary-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative h-[500px] overflow-hidden">
+        <Image
+          src="/images/bigstock-Senior.jpg"
+          alt="Who We Serve"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/60 to-black/30"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center"
+            className="text-center text-white"
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6">Who We Serve</h1>
-            <p className="text-xl md:text-2xl text-primary-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto">
               Compassionate care for individuals and families across all stages of life
             </p>
           </motion.div>
@@ -36,11 +45,10 @@ export default function WhoWeServePage() {
                 <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center">
                   <Users className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-4xl font-bold text-gray-900">Seniors Aging in Place</h2>
+                <h2 className="text-4xl font-bold text-gray-900">Individuals Needing Assistance with Daily Living</h2>
               </div>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                We support older adults who want to maintain their independence and live comfortably in their own homes.
-                Our services help seniors age with dignity while receiving the assistance they need.
+                Transformation home health provides individuals with assistance they need to complete their activities of daily living through Personal Care Services and Homemaker Services to keep your home in order.
               </p>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
@@ -48,8 +56,8 @@ export default function WhoWeServePage() {
                     <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Daily Living Support</h3>
-                    <p className="text-gray-600">Assistance with bathing, dressing, grooming, and mobility</p>
+                    <h3 className="font-bold text-gray-900 mb-1">Personal Care Services</h3>
+                    <p className="text-gray-600">Feeding, bathing, mouth care, dressing, shaving, nail care, medication reminders, bowel/bladder care, hair care, transferring, positioning, and ambulation</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -57,8 +65,8 @@ export default function WhoWeServePage() {
                     <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Medication Management</h3>
-                    <p className="text-gray-600">Ensuring medications are taken safely and on schedule</p>
+                    <h3 className="font-bold text-gray-900 mb-1">Homemaker Services</h3>
+                    <p className="text-gray-600">Light housekeeping, laundry, trash removal, bathroom cleaning, kitchen cleaning, sweeping, dish washing, shopping/errands, vacuuming, and bed making</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -66,8 +74,8 @@ export default function WhoWeServePage() {
                     <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Companionship</h3>
-                    <p className="text-gray-600">Meaningful social interaction to combat loneliness</p>
+                    <h3 className="font-bold text-gray-900 mb-1">Skilled Nursing</h3>
+                    <p className="text-gray-600">Wound care management, ostomy/stoma care, pre and post surgery care, monitoring of chronic conditions, IV therapy, tube feeding, catheter care, drainage tube care, pain management, and medication management</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -75,8 +83,8 @@ export default function WhoWeServePage() {
                     <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Safety & Comfort</h3>
-                    <p className="text-gray-600">Creating a secure, comfortable home environment</p>
+                    <h3 className="font-bold text-gray-900 mb-1">24/7 Support</h3>
+                    <p className="text-gray-600">Access to an on-call 24/7 Registered Nurse for expert care</p>
                   </div>
                 </div>
               </div>
@@ -130,8 +138,8 @@ export default function WhoWeServePage() {
                       <Home className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">Residential Support</h3>
-                      <p className="text-gray-600">Assistance with daily living activities in home settings</p>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">IRSS - Residential Support</h3>
+                      <p className="text-gray-600">Host Home, Independent Living, and Family Caregiver model options for residential support</p>
                     </div>
                   </div>
                 </div>
@@ -142,8 +150,8 @@ export default function WhoWeServePage() {
                       <Users className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">Community Integration</h3>
-                      <p className="text-gray-600">Support for social inclusion and community participation</p>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Community Connector</h3>
+                      <p className="text-gray-600">Programs for individuals under 18 to access community and its resources</p>
                     </div>
                   </div>
                 </div>
@@ -154,8 +162,8 @@ export default function WhoWeServePage() {
                       <HandHeart className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">Life Skills Development</h3>
-                      <p className="text-gray-600">Building capabilities for greater independence</p>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Mentorship</h3>
+                      <p className="text-gray-600">Guidance through consistent training, teaching, mentoring and supervision</p>
                     </div>
                   </div>
                 </div>
@@ -172,30 +180,29 @@ export default function WhoWeServePage() {
                 <div className="w-16 h-16 bg-gradient-to-br from-secondary-500 to-secondary-600 rounded-xl flex items-center justify-center">
                   <HandHeart className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-4xl font-bold text-gray-900">Individuals with Developmental Disabilities</h2>
+                <h2 className="text-4xl font-bold text-gray-900">Persons with Intellectual and Developmental Disability (IDD)</h2>
               </div>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                We provide comprehensive support services designed to promote independence, inclusion, and quality of life
-                for individuals with developmental disabilities.
+                We assist persons with Intellectual and developmental disability (IDD) to be healthy, safe and active members of their community through comprehensive support services.
               </p>
               <div className="bg-secondary-50 border-2 border-secondary-200 rounded-xl p-6">
-                <h3 className="font-bold text-secondary-900 mb-3">Our Approach</h3>
+                <h3 className="font-bold text-secondary-900 mb-3">Our Services for IDD</h3>
                 <ul className="space-y-2 text-secondary-800">
                   <li className="flex items-start gap-2">
                     <span className="text-secondary-600 mt-1">✓</span>
-                    <span>Person-centered planning and support</span>
+                    <span>In-Home Support Services (IHSS) - Training and support for daily living</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-secondary-600 mt-1">✓</span>
-                    <span>Individualized goal setting and achievement</span>
+                    <span>Individual Residential Services and Support (IRSS) - Host Home, Independent Living, Family Caregiver model</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-secondary-600 mt-1">✓</span>
-                    <span>Family partnership and collaboration</span>
+                    <span>Community Connector - Programs for individuals under 18 to access community resources</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-secondary-600 mt-1">✓</span>
-                    <span>Community inclusion and advocacy</span>
+                    <span>Supported Community Connections - Support to live and participate in the community safely</span>
                   </li>
                 </ul>
               </div>
@@ -216,27 +223,27 @@ export default function WhoWeServePage() {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl mb-4">
               <Heart className="w-8 h-8 text-white" />
             </div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Families & Caregivers</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Families Caring for Loved Ones with Physical or Mental Disabilities</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Supporting families through every stage of the caregiving journey
+              In-Home Support Services (IHSS) allows family members to get paid for providing care to loved ones with physical or mental disabilities
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: 'Respite Care',
-                description: 'Temporary relief services so family caregivers can rest and recharge',
+                title: 'IHSS Training & Support',
+                description: 'Transformation Home health provides training and support clients and families need to make them feel at their best',
                 icon: Shield
               },
               {
-                title: 'Recovery Support',
-                description: 'Post-hospital care and rehabilitation assistance for loved ones',
+                title: 'Daily Living Assistance',
+                description: 'Medication reminders, grocery shopping, bathing, dressing, laundry, light housekeeping, planning daily schedule, meal preparation',
                 icon: Heart
               },
               {
-                title: 'Long-Term Assistance',
-                description: 'Ongoing support for families managing chronic conditions',
+                title: 'Family Caregiver Model',
+                description: 'Services that enable family members to provide care and support to their loved ones with IDD in a familiar, comfortable home setting',
                 icon: HandHeart
               },
             ].map((service, index) => (

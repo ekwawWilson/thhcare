@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Heart, Users, Home, Shield, Clock, Award } from "lucide-react";
 import HeroSlider from "@/components/ui/HeroSlider";
 import PictureGallery from "@/components/ui/PictureGallery";
-import { image } from "framer-motion/client";
 
 export default function HomePage() {
   const fadeInUp = {
@@ -29,142 +29,158 @@ export default function HomePage() {
       src: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=1920&h=1080&fit=crop",
       title: "Personal Care Services",
       description:
-        "Comprehensive assistance with feeding, bathing, toileting, medication reminders, and meal preparation in the comfort of your home.",
+        "Transformation home health provides individuals with assistance they need to complete their activities of daily living including feeding, bathing, mouth care, dressing, medication reminders, and more.",
     },
     {
       type: "image" as const,
       src: "/images/disability.jpg",
-      title: "Support for IDD Individuals",
+      title: "In-Home Support Services (IHSS)",
       description:
-        "Specialized services for persons with intellectual and developmental disabilities to be healthy, safe, and active community members.",
+        "In-Home Support Services allows family members to get paid for providing care to loved ones with physical or mental disabilities.",
     },
     {
       type: "image" as const,
-      src: "/images/developmental.jpeg",
-      title: "Community Integration",
+      src: "/images/individulasupport.jpg",
+      title: "Individual Residential Services and Support (IRSS)",
       description:
-        "Community Connector and Supported Community Connections helping individuals discover resources and build meaningful social connections.",
+        "Transformation home health has series of plan and arrangements put together to meet the unique needs for support and care of individuals interested in residential Support.",
     },
     {
       type: "image" as const,
-      src: "/images/home-health.webp",
-      title: "Person-Centered Approach",
+      src: "/images/Caregivers-Cover-Slide.jpg",
+      title: "Community Connector",
       description:
-        "Individualized support plans that respect personal choices, preferences, and goals for independent living.",
+        "Transformation home health through Community Connection provides individuals under 18 years a program designed to help them access the community and its resources.",
     },
     {
       type: "image" as const,
-      src: "/images/caregiver-assisting.webp",
-      title: "Adults Home Care",
-      description: "Companionship, conversation, and emotional support.",
+      src: "/images/caregiving-featured.jpg",
+      title: "Supported Community Connections",
+      description:
+        "Transformation Home health through Supported community Connections provides individuals with IDD the Support they need to live and participate in the Community safely.",
     },
   ];
 
   // Gallery images data
   const galleryImages = [
     {
-      src: "/images/Community.jpg",
+      src: "/images/nailcare.jpg",
       alt: "Caregiver helping senior with daily activities",
-      title: "Daily Living Support",
+      title: "Nail Care",
     },
     {
       src: "/images/Caregiver1.jpg",
       alt: "Home health nurse checking vitals",
-      title: "Professional Health Monitoring",
+      title: "Ostomy/Stoma Care",
     },
     {
-      src: "/images/seniors.jpg",
+      src: "/images/gocerycgare.jpg",
       alt: "Senior enjoying outdoor activities with caregiver",
-      title: "Outdoor Activities & Companionship",
+      title: "Grocery Shopping",
     },
     {
-      src: "/images/bigstock-Senior.jpg",
+      src: "/images/𝐊𝐢𝐭𝐜𝐡𝐞𝐧-𝐂𝐥𝐞𝐚𝐧𝐢𝐧𝐠-1.webp",
       alt: "Caregiver and senior cooking together",
-      title: "Meal Preparation & Nutrition",
+      title: "Kitchen Cleaning",
     },
     {
       src: "/images/physical.avif",
       alt: "Physical therapy session at home",
-      title: "Rehabilitation Services",
+      title: "Positioning",
     },
     {
-      src: "/images/Care-Coordination.jpg",
+      src: "/images/baseball.jpg",
       alt: "Family meeting with care coordinator",
-      title: "Family Consultation",
+      title: "Mentorship",
     },
     {
-      src: "/images/fun-activities-elderly.jpg",
+      src: "/images/BP.jpeg",
       alt: "Senior participating in group activities",
-      title: "Community Engagement",
+      title: "Monitoring of Chronic conditions",
     },
     {
-      src: "/images/tips_for_choosing.jpg",
+      src: "/images/feedinf.jpeg",
       alt: "Caregiver reading with senior",
-      title: "Cognitive Stimulation",
+      title: "Feeding Assistance",
     },
   ];
 
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-10"></div>
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-          <div className="absolute top-40 right-10 w-72 h-72 bg-secondary-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-primary-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-        </div>
+      <section className="relative h-[600px] overflow-hidden">
+        <Image
+          src="/images/care11.png"
+          alt="Home Care Services"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center lg:items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
+            className="text-white max-w-4xl hidden lg:block"
           >
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
-            >
-              A House of Care
-              <br />
-              <span className="text-secondary-300">
-                A Home of Transformation
-              </span>
-            </motion.h1>
+            ></motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xl md:text-2xl mb-8 text-primary-100 max-w-3xl mx-auto"
-            >
-              Administering care, support and resources to clients in the
-              comfort of their homes. Assisting persons with IDD to be healthy,
-              safe and active members of their community.
-            </motion.p>
+              className="text-xl md:text-2xl mb-8 max-w-3xl"
+            ></motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-2 justify-center mb-8 relative z-10"
+              className="flex flex-row gap-4 relative z-10"
             >
               <Link
                 href="/appointments"
-                className="inline-block bg-white text-primary-600 px-5 py-2.5 rounded-lg font-medium text-sm hover:bg-primary-50 transform hover:scale-105 transition-all duration-200 shadow-xl cursor-pointer"
+                className="inline-block border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-primary-50  hover:text-primary-600 transform hover:scale-105 transition-all duration-200 shadow-xl cursor-pointer text-center"
               >
                 Book an Appointment
               </Link>
               <Link
                 href="/services"
-                className="inline-block bg-transparent border-2 border-white text-white px-5 py-2.5 rounded-lg font-medium text-sm hover:bg-white hover:text-primary-600 transform hover:scale-105 transition-all duration-200 cursor-pointer"
+                className="inline-block bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-primary-600 transform hover:scale-105 transition-all duration-200 cursor-pointer text-center"
               >
                 Explore Our Services
               </Link>
             </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Mobile CTA Buttons - Bottom positioned */}
+        <div className="lg:hidden absolute bottom-24 left-0 right-0 px-4 z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="flex justify-between gap-3"
+          >
+            <Link
+              href="/appointments"
+              className="flex-1 border-2 border-primary-600 text-primary-600 px-4 py-3 bg-white/60 rounded-md font-semibold text-xs hover:bg-primary-50 transition-all duration-200 shadow-lg text-center"
+            >
+              Book Appointment
+            </Link>
+            <Link
+              href="/services"
+              className="flex-1 border-2 border-primary-600 text-primary-600 px-4 py-3 bg-white/60 rounded-md font-semibold text-xs hover:bg-primary-50 transition-all duration-200 shadow-lg text-center"
+            >
+              Our Services
+            </Link>
           </motion.div>
         </div>
 
@@ -221,7 +237,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { icon: Shield, text: "Licensed & Trained Professionals" },
+              { icon: Shield, text: "Trained Professionals" },
               { icon: Heart, text: "Personalized Care Plans" },
               { icon: Home, text: "Home & Community Support" },
               { icon: Users, text: "Family-Centered Approach" },
@@ -262,23 +278,23 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Personal Care & Homemaker Services",
+                title: "Personal Care Services",
                 description:
-                  "Comprehensive assistance with feeding, bathing, toileting, incontinence care, medication reminders, meal preparation, housekeeping, laundry, cooking, and shopping.",
+                  "Transformation home health provides individuals with assistance they need to complete their activities of daily living including feeding, bathing, mouth care, dressing, shaving, nail care, medication reminders, bowel/bladder care, hair care, transferring, positioning, and ambulation.",
                 icon: Home,
                 image: "/images/Health-Nursing.jpg",
               },
               {
-                title: "IHSS & IRSS Support",
+                title: "In-Home Support Services (IHSS)",
                 description:
-                  "In-Home Support Services and Individual Residential Services for persons with intellectual and developmental disabilities to maintain independence in their homes and communities.",
+                  "In-Home Support Services allows family members to get paid for providing care to loved ones with physical or mental disabilities. Transformation Home health provides training and support Client and families need to make them feel at their best.",
                 icon: Users,
                 image: "/images/cooking.jpg",
               },
               {
-                title: "Community Connections & Mentorship",
+                title: "Community Connector & Supported Community Connections",
                 description:
-                  "Community Connector and Supported Community Connections services that help individuals discover resources, build social connections, and participate fully in community life.",
+                  "Transformation home health through Community Connection provides individuals under 18 years a program designed to help them access the community and its resources.",
                 icon: Heart,
                 image: "/images/parkcare.png",
               },
@@ -336,21 +352,23 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Seniors & Adults Needing Home Care",
+                title: "Individuals Needing Assistance with Daily Living",
                 description:
-                  "Personal care and homemaker services to help older adults and individuals maintain independence in their own homes throughout the Denver Metro area.",
+                  "Transformation home health provides individuals with assistance they need to complete their activities of daily living through Personal Care Services including feeding, bathing, dressing, medication reminders, and Homemaker Services including light housekeeping, laundry, and meal preparation.",
                 image: "/images/img2.jpg",
               },
               {
-                title: "Individuals with IDD",
+                title:
+                  "Persons with Intellectual and Developmental Disability (IDD)",
                 description:
-                  "Comprehensive IHSS, IRSS, and community-based support services for persons with intellectual and developmental disabilities in Arapahoe, Douglas, Elbert, Denver, Adams, and Jefferson Counties.",
+                  "We assist persons with Intellectual and developmental disability (IDD) to be healthy, safe and active members of their community through IHSS, IRSS (Host Home, Independent Living, Family Caregiver model), Community Connector for individuals under 18, and Supported Community Connections.",
                 image: "/images/Picture1-2.jpg",
               },
               {
-                title: "Colorado Families & Communities",
+                title:
+                  "Families Caring for Loved Ones with Physical or Mental Disabilities",
                 description:
-                  "Serving families throughout the Front Range with person-centered care, mentorship, and community integration services that promote dignity and inclusion.",
+                  "In-Home Support Services (IHSS) allows family members to get paid for providing care to loved ones with physical or mental disabilities. We provide training and support families need including medication reminders, grocery shopping, bathing, dressing, meal preparation, and planning daily schedules.",
                 image: "/images/community-health.jpg",
               },
             ].map((audience, index) => (

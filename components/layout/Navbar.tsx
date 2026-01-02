@@ -21,11 +21,14 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24">
+        <div className="flex justify-between items-center h-28 md:h-32 lg:h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center relative">
-            {/* Floating Rectangular Logo */}
-            <div className="absolute -top-8 md:-top-10 left-0 h-28 w-64 md:h-32 md:w-72 overflow-hidden bg-white rounded-lg shadow-2xl  border-primary-200 transform hover:scale-105 transition-transform duration-300 z-10">
+          <Link
+            href="/"
+            className="flex items-center relative mx-auto lg:mx-0"
+          >
+            {/* Logo - floats with container on all screens */}
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 h-36 w-[13.5rem] md:-top-16 md:h-44 md:w-[18rem] lg:-top-10 lg:left-0 lg:translate-x-0 lg:h-32 lg:w-36 bg-white rounded-lg shadow-2xl border-primary-200 overflow-hidden transform hover:scale-105 transition-transform duration-300 z-10">
               <Image
                 src="/images/logolon2.jpg"
                 alt="Transformation Home Health LLC"
@@ -35,7 +38,7 @@ export default function Navbar() {
               />
             </div>
             {/* Spacer to prevent overlap with nav items */}
-            <div className="w-64 md:w-72 h-1"></div>
+            <div className="w-[13.5rem] md:w-[18rem] lg:w-36 h-1"></div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -54,7 +57,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 absolute right-4"
           >
             <svg
               className="w-6 h-6"
