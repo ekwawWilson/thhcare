@@ -17,12 +17,12 @@ export default function ResourcesPage() {
     {
       question: "How do I get started with your services?",
       answer:
-        "Contact us at (720) 668-1225 or email Transformationhomehealth@gmail.com to schedule a free consultation. We'll discuss your needs and create a personalized care plan.",
+        "Contact us at  +1(720) 668-1225 or email Transformationhomehealth@gmail.com to schedule a free consultation. We'll discuss your needs and create a personalized care plan.",
     },
     {
       question: "What is the difference between IHSS and IRSS?",
       answer:
-        "IHSS (In-Home Support Services) provides support for individuals with IDD to maintain independence in their homes. IRSS (Individual Residential Services & Support) offers residential support in community settings for persons with IDD.",
+        "IHSS (In-Home Support Services) provides support for individuals with IDD to maintain independence in their homes. IRSS (Individual Residential Services & Support) offers residential support in community settings for individuals.",
     },
     {
       question: "What areas of Colorado do you serve?",

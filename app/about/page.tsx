@@ -70,30 +70,11 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="grid grid-cols-2 gap-4"
+              className="grid grid-cols-1 gap-4"
             >
-              <div className="bg-primary-50 rounded-xl p-6 text-center">
-                <div className="text-4xl font-bold text-primary-600 mb-2">
-                  15+
-                </div>
-                <div className="text-gray-700 font-semibold">
-                  Years Experience
-                </div>
-              </div>
-              <div className="bg-secondary-50 rounded-xl p-6 text-center">
-                <div className="text-4xl font-bold text-secondary-600 mb-2">
-                  500+
-                </div>
-                <div className="text-gray-700 font-semibold">
-                  Clients Served
-                </div>
-              </div>
               <div className="bg-green-50 rounded-xl p-6 text-center">
-                <div className="text-4xl font-bold text-green-600 mb-2">
-                  100+
-                </div>
-                <div className="text-gray-700 font-semibold">
-                  Care Professionals
+                <div className="text-gray-700 font-semibold text-2xl">
+                  A Team of Care Professionals
                 </div>
               </div>
               <div className="bg-orange-50 rounded-xl p-6 text-center">

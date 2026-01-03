@@ -17,6 +17,13 @@ import {
 export default function ServicesPage() {
   const homeServices = [
     {
+      icon: Stethoscope,
+      title: "Skilled Nursing",
+      description:
+        "Our team of licensed nurses provides expert care. Transformation Home health provides patients with access to an on-call 24/7 Registered Nurse. Our Skilled nursing Services include but not limited to wound care management, ostomy/stoma care, pre and post surgery care, monitoring of chronic conditions, IV therapy, tube feeding, catheter care, drainage tube care, pain management, and medication management.",
+      image: "/images/skilled_nursing.webp",
+    },
+    {
       icon: Heart,
       title: "Personal Care Services",
       description:
@@ -65,11 +72,6 @@ export default function ServicesPage() {
       title: "Mentorship",
       description:
         "Transformation home health through mentorship program provides guidance to individuals interested in engaging and achieving a particular task through consistent training, teaching, mentoring and supervision.",
-    },
-    {
-      title: "Skilled Nursing",
-      description:
-        "Our team of licensed nurses provides expert care. Transformation Home health provides patients with access to an on-call 24/7 Registered Nurse. Our Skilled nursing Services include but not limited to wound care management, ostomy/stoma care, pre and post surgery care, monitoring of chronic conditions, IV therapy, tube feeding, catheter care, drainage tube care, pain management, and medication management.",
     },
   ];
 
@@ -136,7 +138,7 @@ export default function ServicesPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 [&>*:nth-child(7)]:lg:col-start-2">
             {homeServices.map((service, index) => (
               <motion.div
                 key={index}
@@ -211,21 +213,23 @@ export default function ServicesPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {skilledServices.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow"
-              >
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600">{service.description}</p>
-              </motion.div>
-            ))}
+          <div className="flex justify-center">
+            <div className="max-w-2xl w-full">
+              {skilledServices.map((service, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow"
+                >
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600">{service.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

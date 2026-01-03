@@ -6,9 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 enum AdminRole {
@@ -57,9 +56,9 @@ model Appointment {
   serviceType   String             @map("service_type")
   preferredDate DateTime           @map("preferred_date")
   preferredTime String             @map("preferred_time")
-  message       String
+  message       String             @db.Text
   status        AppointmentStatus  @default(PENDING)
-  adminReply    String?            @map("admin_reply")
+  adminReply    String?            @map("admin_reply") @db.Text
   repliedAt     DateTime?          @map("replied_at")
   createdAt     DateTime           @default(now()) @map("created_at")
   updatedAt     DateTime           @updatedAt @map("updated_at")
@@ -74,7 +73,7 @@ model CareerApplication {
   phone           String
   positionApplied String            @map("position_applied")
   resumePath      String            @map("resume_path")
-  message         String?
+  message         String?           @db.Text
   status          ApplicationStatus @default(PENDING)
   createdAt       DateTime          @default(now()) @map("created_at")
 
@@ -85,9 +84,9 @@ model ContactMessage {
   id         Int           @id @default(autoincrement())
   name       String
   email      String
-  message    String
+  message    String        @db.Text
   status     MessageStatus @default(UNREAD)
-  adminReply String?       @map("admin_reply")
+  adminReply String?       @map("admin_reply") @db.Text
   repliedAt  DateTime?     @map("replied_at")
   createdAt  DateTime      @default(now()) @map("created_at")
 

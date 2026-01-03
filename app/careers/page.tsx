@@ -257,7 +257,7 @@ export default function CareersPage() {
                 type="tel"
                 {...register("phone")}
                 error={errors.phone?.message}
-                placeholder="(555) 123-4567"
+                placeholder=" +1(720) 668-1225"
                 required
               />
               <Select
@@ -367,10 +367,10 @@ export default function CareersPage() {
             </a>{" "}
             or call{" "}
             <a
-              href="tel:5551234567"
+              href="tel: +1(720) 668-1225"
               className="text-primary-600 hover:text-primary-700 font-semibold"
             >
-              +1 (202) 390-3257
+              +1(720) 668-1225
             </a>
           </p>
         </motion.div>

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { Heart, Users, Home, Shield, Clock, Award } from "lucide-react";
+import { Heart, Users, Home, Shield } from "lucide-react";
 import HeroSlider from "@/components/ui/HeroSlider";
 import PictureGallery from "@/components/ui/PictureGallery";
 
@@ -116,7 +116,7 @@ export default function HomePage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-black/10 to-transparent"></div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center lg:items-center">
           <motion.div

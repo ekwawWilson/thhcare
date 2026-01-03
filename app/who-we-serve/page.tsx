@@ -56,6 +56,15 @@ export default function WhoWeServePage() {
                     <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
                   </div>
                   <div>
+                    <h3 className="font-bold text-gray-900 mb-1">Skilled Nursing</h3>
+                    <p className="text-gray-600">Our team of licensed nurses provides expert care with access to an on-call 24/7 Registered Nurse. Services include wound care management, ostomy/stoma care, pre and post surgery care, monitoring of chronic conditions, IV therapy, tube feeding, catheter care, drainage tube care, pain management, and medication management</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-secondary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
+                  </div>
+                  <div>
                     <h3 className="font-bold text-gray-900 mb-1">Personal Care Services</h3>
                     <p className="text-gray-600">Feeding, bathing, mouth care, dressing, shaving, nail care, medication reminders, bowel/bladder care, hair care, transferring, positioning, and ambulation</p>
                   </div>
@@ -67,24 +76,6 @@ export default function WhoWeServePage() {
                   <div>
                     <h3 className="font-bold text-gray-900 mb-1">Homemaker Services</h3>
                     <p className="text-gray-600">Light housekeeping, laundry, trash removal, bathroom cleaning, kitchen cleaning, sweeping, dish washing, shopping/errands, vacuuming, and bed making</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-secondary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Skilled Nursing</h3>
-                    <p className="text-gray-600">Wound care management, ostomy/stoma care, pre and post surgery care, monitoring of chronic conditions, IV therapy, tube feeding, catheter care, drainage tube care, pain management, and medication management</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-secondary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <div className="w-2 h-2 bg-primary-600 rounded-full"></div>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-1">24/7 Support</h3>
-                    <p className="text-gray-600">Access to an on-call 24/7 Registered Nurse for expert care</p>
                   </div>
                 </div>
               </div>
