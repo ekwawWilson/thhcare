@@ -75,7 +75,7 @@ jobs:
             **/.idea/**
 
       - name: Install dependencies on server via SSH
-        if: ${{ secrets.SSH_HOST != '' }}
+        if: secrets.SSH_HOST != ''
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -90,7 +90,7 @@ jobs:
             echo "Deployment completed successfully!"
 
       - name: SSH not configured
-        if: ${{ secrets.SSH_HOST == '' }}
+        if: secrets.SSH_HOST == ''
         run: |
           echo "⚠️  SSH credentials not configured - skipping SSH step"
           echo "📝 After deployment, manually run on server:"
