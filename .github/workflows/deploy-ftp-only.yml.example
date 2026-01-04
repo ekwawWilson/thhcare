@@ -1,0 +1,105 @@
+name: Deploy to SmarterASP.NET (FTP Only)
+
+# This is a simpler version that uses FTP only (no SSH required)
+# Rename this file to deploy.yml if you don't have SSH access
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Build Next.js application
+        run: npm run build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL }}
+
+      - name: Create deployment package
+        run: |
+          mkdir -p deploy
+
+          # Copy built files
+          cp -r .next deploy/
+          cp -r public deploy/
+          cp -r prisma deploy/
+          cp package.json deploy/
+          cp package-lock.json deploy/
+
+          # Copy config files if they exist
+          [ -f next.config.ts ] && cp next.config.ts deploy/ || true
+          [ -f next.config.js ] && cp next.config.js deploy/ || true
+          [ -f tsconfig.json ] && cp tsconfig.json deploy/ || true
+
+          # Create .env file from secrets
+          cat > deploy/.env << EOF
+          NODE_ENV=production
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
+          NEXT_PUBLIC_APP_URL=${{ secrets.NEXT_PUBLIC_APP_URL }}
+          SMTP_HOST=${{ secrets.SMTP_HOST }}
+          SMTP_PORT=${{ secrets.SMTP_PORT }}
+          SMTP_USER=${{ secrets.SMTP_USER }}
+          SMTP_PASS=${{ secrets.SMTP_PASS }}
+          EMAIL_FROM=${{ secrets.EMAIL_FROM }}
+          EOF
+
+          # Create post-deployment instructions
+          cat > deploy/INSTALL_DEPENDENCIES.txt << 'INSTRUCTIONS'
+          After deployment, run these commands on the server:
+
+          1. Via SmarterASP.NET Control Panel Terminal:
+             cd /wwwroot
+             npm install --production
+             npx prisma generate
+             npx prisma db push
+
+          2. Or upload node_modules folder manually after running:
+             npm install --production
+
+          Then restart the application from the control panel.
+          INSTRUCTIONS
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./deploy/
+          server-dir: /
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.vscode/**
+            **/.idea/**
+
+      - name: Deployment Complete
+        run: |
+          echo "✅ Files deployed successfully!"
+          echo "⚠️  IMPORTANT: Run 'npm install --production' on the server"
+          echo "📝 See INSTALL_DEPENDENCIES.txt on the server for instructions"
