@@ -40,7 +40,6 @@ jobs:
           cp -r .next deploy/
           cp -r public deploy/
           cp -r prisma deploy/
-          cp -r node_modules deploy/
           cp package.json deploy/
           cp package-lock.json deploy/
           cp app.js deploy/
@@ -61,15 +60,29 @@ jobs:
           EMAIL_FROM=${{ secrets.EMAIL_FROM }}
           EOF
 
+          # Create installation script for server
+          cat > deploy/install-deps.sh << 'SCRIPT'
+          #!/bin/bash
+          cd /wwwroot
+          npm install --production
+          npx prisma generate
+          echo "Dependencies installed successfully!"
+          SCRIPT
+          chmod +x deploy/install-deps.sh
+
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        timeout-minutes: 30
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./deploy/
           server-dir: /
+          protocol: ftps
+          port: 21
           dangerous-clean-slate: false
+          log-level: standard
           exclude: |
             **/.git*
             **/.git*/**
@@ -78,20 +91,31 @@ jobs:
 
       - name: Deployment complete
         run: |
-          echo "✅ Deployment completed successfully!"
+          echo "✅ Files deployed via FTP successfully!"
           echo ""
           echo "📋 Deployed files:"
           echo "   - .next/ (built application)"
-          echo "   - node_modules/ (dependencies)"
           echo "   - public/ (static assets)"
           echo "   - prisma/ (database schema)"
           echo "   - app.js (server entry point)"
           echo "   - web.config (IIS configuration)"
           echo "   - .env (environment variables)"
+          echo "   - package.json & package-lock.json"
           echo ""
-          echo "🎯 Next steps in SmarterASP.NET Control Panel:"
+          echo "⚠️  IMPORTANT: Run these commands on your server:"
+          echo ""
+          echo "Option 1 - Using Control Panel Terminal:"
+          echo "   cd /wwwroot"
+          echo "   npm install --production"
+          echo "   npx prisma generate"
+          echo ""
+          echo "Option 2 - Using install script:"
+          echo "   cd /wwwroot"
+          echo "   bash install-deps.sh"
+          echo ""
+          echo "Then:"
           echo "   1. Enable Node.js in Application Settings"
           echo "   2. Set PORT environment variable"
           echo "   3. Restart the application"
           echo ""
-          echo "Your site should be live! 🚀"
+          echo "See SERVER_SETUP_GUIDE.md for detailed instructions"

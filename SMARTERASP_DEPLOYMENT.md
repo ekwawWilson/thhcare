@@ -67,12 +67,38 @@ https://github.com/ekwawWilson/thhcare/actions
 The deployment will:
 1. ✅ Build Next.js application
 2. ✅ Generate Prisma client
-3. ✅ Package all files (including node_modules)
+3. ✅ Package all files (excluding node_modules)
 4. ✅ Deploy via FTP to your server
 
-### Step 5: Configure SmarterASP.NET Control Panel
+### Step 5: Install Dependencies on Server
 
-After deployment completes:
+After FTP deployment completes, you MUST install dependencies on the server:
+
+**Option 1 - Control Panel Terminal (Recommended):**
+1. Login to SmarterASP.NET Control Panel
+2. Find Terminal/Console (see SERVER_SETUP_GUIDE.md for help)
+3. Run these commands:
+   ```bash
+   cd /wwwroot
+   npm install --production
+   npx prisma generate
+   npx prisma db push
+   ```
+
+**Option 2 - Use Installation Script:**
+```bash
+cd /wwwroot
+bash install-deps.sh
+npx prisma db push
+```
+
+**Option 3 - Contact Support:**
+If you can't find terminal access, contact SmarterASP.NET support and ask them to run:
+```bash
+cd /wwwroot && npm install --production && npx prisma generate && npx prisma db push
+```
+
+### Step 6: Configure SmarterASP.NET Control Panel
 
 1. **Enable Node.js:**
    - Go to Application Settings
@@ -86,15 +112,7 @@ After deployment completes:
 3. **Restart Application:**
    - Click "Restart Application" or "Recycle Application Pool"
 
-4. **Run Database Migration (first time only):**
-   - If you have SSH/terminal access:
-     ```bash
-     cd /wwwroot
-     npx prisma db push
-     ```
-   - Or use SmarterASP.NET's control panel terminal
-
-### Step 6: Verify Deployment
+### Step 7: Verify Deployment
 
 Visit your domain:
 - Main site: `https://yourdomain.com`
@@ -107,7 +125,6 @@ The GitHub Actions workflow automatically deploys:
 
 ```
 ✅ .next/              (Built Next.js app)
-✅ node_modules/       (All dependencies - no npm install needed!)
 ✅ public/             (Static assets: images, fonts)
 ✅ prisma/             (Database schema)
 ✅ app.js              (Server entry point)
@@ -115,7 +132,10 @@ The GitHub Actions workflow automatically deploys:
 ✅ .env                (Generated from GitHub Secrets)
 ✅ package.json        (Dependencies list)
 ✅ package-lock.json   (Locked versions)
+✅ install-deps.sh     (Installation script)
 ```
+
+**Note:** `node_modules` is NOT deployed via FTP (too slow). You'll run `npm install` on the server instead.
 
 ## 🔄 Future Deployments
 
