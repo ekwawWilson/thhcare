@@ -40,8 +40,11 @@ jobs:
           cp -r .next deploy/
           cp -r public deploy/
           cp -r prisma deploy/
+          cp -r node_modules deploy/
           cp package.json deploy/
           cp package-lock.json deploy/
+          cp app.js deploy/
+          cp web.config deploy/
           cp next.config.ts deploy/ || cp next.config.js deploy/ || true
           cp tsconfig.json deploy/ || true
 
@@ -70,33 +73,25 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
-            **/node_modules/**
             **/.vscode/**
             **/.idea/**
 
-      - name: Install dependencies on server via SSH (optional)
-        continue-on-error: true
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          port: ${{ secrets.SSH_PORT || 22 }}
-          script: |
-            cd ${{ secrets.DEPLOY_PATH || '/wwwroot' }}
-            npm install --production
-            npx prisma generate
-            npx prisma db push --accept-data-loss || true
-            echo "Deployment completed successfully!"
-
-      - name: Manual setup instructions
+      - name: Deployment complete
         run: |
-          echo "✅ Files deployed via FTP successfully!"
+          echo "✅ Deployment completed successfully!"
           echo ""
-          echo "📝 If SSH step failed or was skipped, manually run on server:"
-          echo "   cd /wwwroot"
-          echo "   npm install --production"
-          echo "   npx prisma generate"
-          echo "   npx prisma db push"
+          echo "📋 Deployed files:"
+          echo "   - .next/ (built application)"
+          echo "   - node_modules/ (dependencies)"
+          echo "   - public/ (static assets)"
+          echo "   - prisma/ (database schema)"
+          echo "   - app.js (server entry point)"
+          echo "   - web.config (IIS configuration)"
+          echo "   - .env (environment variables)"
           echo ""
-          echo "See SERVER_SETUP_GUIDE.md for detailed instructions"
+          echo "🎯 Next steps in SmarterASP.NET Control Panel:"
+          echo "   1. Enable Node.js in Application Settings"
+          echo "   2. Set PORT environment variable"
+          echo "   3. Restart the application"
+          echo ""
+          echo "Your site should be live! 🚀"
