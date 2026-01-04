@@ -78,22 +78,26 @@ jobs:
 
       - name: Deploy via FTP (SLOW - includes node_modules)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        timeout-minutes: 45
+        timeout-minutes: 60
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./deploy/
           server-dir: /
-          protocol: ftps
+          protocol: ftp
           port: 21
+          security: loose
           dangerous-clean-slate: false
-          log-level: standard
+          log-level: verbose
+          dry-run: false
           exclude: |
             **/.git*
             **/.git*/**
             **/.vscode/**
             **/.idea/**
+            **/node_modules/.cache/**
+            **/node_modules/.vite/**
 
       - name: Deployment complete
         run: |

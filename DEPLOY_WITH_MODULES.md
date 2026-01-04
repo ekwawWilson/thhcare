@@ -1,37 +1,88 @@
-# Deploy With node_modules (Slow but Complete)
+# Deploy With node_modules (Alternative Methods)
 
-## When to Use This Method
+## When to Use This
 
-Use this deployment method if:
+Use these methods if:
 - ✅ SmarterASP.NET support can't/won't run `npm install` for you
 - ✅ You don't have terminal/console access in control panel
 - ✅ You can't find a way to install dependencies on the server
-- ✅ You're okay with 20-40 minute deployments
 
-## How It Works
+## 🎯 RECOMMENDED: Deploy Compressed (Fast & Reliable)
 
-This method uploads **everything** including the `node_modules` folder via FTP. It's slow because node_modules contains thousands of small files, but it works without requiring npm on the server.
+**Best option!** This compresses node_modules into a single zip file before uploading.
 
-## 🚀 Deploy Now
+### Why This Is Better:
+- ✅ Fast upload (5-10 minutes instead of 30-40 minutes)
+- ✅ Reliable (no connection resets)
+- ✅ Single file upload (node_modules.zip ~50-150 MB)
+- ⚠️ Requires extracting zip on server (easy with File Manager)
 
-### Step 1: Go to GitHub Actions
+## 🚀 Method 1: Deploy Compressed (RECOMMENDED)
 
-Visit: https://github.com/ekwawWilson/thhcare/actions/workflows/deploy-with-modules.yml
+### Step 1: Run Compressed Deployment
 
-### Step 2: Run Workflow Manually
+Visit: https://github.com/ekwawWilson/thhcare/actions/workflows/deploy-compressed.yml
 
-1. Click **"Run workflow"** button (on the right)
+1. Click **"Run workflow"** button
 2. Select branch: `master` or `main`
 3. Click **"Run workflow"** (green button)
 
-### Step 3: Wait (20-40 minutes)
+### Step 2: Wait (5-10 minutes)
 
 The deployment will:
 1. ✅ Build your Next.js app (2-3 minutes)
-2. ✅ Copy node_modules to deployment package (1-2 minutes)
-3. ✅ Upload EVERYTHING via FTP (15-35 minutes) ⏰ **This is slow!**
+2. ✅ Compress node_modules into zip (1-2 minutes)
+3. ✅ Upload via FTP including node_modules.zip (2-5 minutes)
 
-**☕ Grab a coffee!** The FTP upload will take a while but should complete successfully.
+**Much faster and more reliable!** ⚡
+
+### Step 3: Extract on Server
+
+After deployment completes, extract node_modules on the server:
+
+**Option A - Using File Manager (Easiest):**
+1. Login to SmarterASP.NET Control Panel
+2. Go to File Manager
+3. Navigate to: `h:\root\home\arochabrace-001\www\homehealth\`
+4. Find `node_modules.zip`
+5. Right-click → **Extract All** or **Extract Here**
+6. Wait for extraction to complete (2-5 minutes)
+7. Double-click `extract-modules.bat` to run Prisma generate
+8. Delete `node_modules.zip` to save space
+
+**Option B - Using Control Panel Terminal:**
+```bash
+cd h:\root\home\arochabrace-001\www\homehealth
+extract-modules.bat
+```
+
+**Option C - PowerShell Command:**
+```powershell
+cd h:\root\home\arochabrace-001\www\homehealth
+powershell -Command "Expand-Archive -Path node_modules.zip -DestinationPath . -Force"
+npx prisma generate
+del node_modules.zip
+```
+
+---
+
+## 🐌 Method 2: Deploy Uncompressed (Backup Option)
+
+**Only use if compressed method doesn't work!**
+
+### Step 1: Run Uncompressed Deployment
+
+Visit: https://github.com/ekwawWilson/thhcare/actions/workflows/deploy-with-modules.yml
+
+1. Click **"Run workflow"** button
+2. Select branch: `master` or `main`
+3. Click **"Run workflow"** (green button)
+
+### Step 2: Wait (30-60 minutes)
+
+This uploads thousands of individual files. It's slow and may fail with connection errors.
+
+⚠️ **Warning:** This method often gets "ECONNRESET" errors. Use Method 1 (compressed) instead!
 
 ### Step 4: Configure Server
 

@@ -1,0 +1,168 @@
+name: Deploy to SmarterASP.NET (Compressed)
+
+# This workflow compresses node_modules into a zip file before uploading
+# Much more reliable than uploading thousands of individual files
+# You'll need to extract the zip on the server
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Build Next.js application
+        run: npm run build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL }}
+
+      - name: Create deployment package with compressed node_modules
+        run: |
+          mkdir -p deploy
+
+          echo "Copying built application..."
+          cp -r .next deploy/
+          cp -r public deploy/
+          cp -r prisma deploy/
+
+          echo "Copying configuration files..."
+          cp package.json deploy/
+          cp package-lock.json deploy/
+          cp app.js deploy/
+          cp web.config deploy/
+          cp next.config.ts deploy/ || cp next.config.js deploy/ || true
+          cp tsconfig.json deploy/ || true
+
+          # Create .env file from secrets
+          cat > deploy/.env << EOF
+          NODE_ENV=production
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
+          NEXT_PUBLIC_APP_URL=${{ secrets.NEXT_PUBLIC_APP_URL }}
+          SMTP_HOST=${{ secrets.SMTP_HOST }}
+          SMTP_PORT=${{ secrets.SMTP_PORT }}
+          SMTP_USER=${{ secrets.SMTP_USER }}
+          SMTP_PASS=${{ secrets.SMTP_PASS }}
+          EMAIL_FROM=${{ secrets.EMAIL_FROM }}
+          EOF
+
+          echo "Compressing node_modules (this makes upload much faster)..."
+          cd node_modules
+          zip -r -q ../deploy/node_modules.zip . -x "*.cache/*" -x "*.vite/*" -x ".bin/*"
+          cd ..
+
+          # Create extraction script for Windows
+          cat > deploy/extract-modules.bat << 'BATCH'
+          @echo off
+          echo Extracting node_modules...
+          cd /d "%~dp0"
+
+          REM Check if PowerShell is available
+          where powershell >nul 2>&1
+          if %ERRORLEVEL% EQU 0 (
+              echo Using PowerShell to extract...
+              powershell -Command "Expand-Archive -Path node_modules.zip -DestinationPath . -Force"
+          ) else (
+              echo PowerShell not found. Please extract node_modules.zip manually.
+              echo Right-click node_modules.zip and select Extract All...
+              pause
+              exit /b 1
+          )
+
+          echo Generating Prisma client...
+          call npx prisma generate
+
+          echo Done! You can delete node_modules.zip now.
+          echo Run: del node_modules.zip
+          pause
+          BATCH
+
+          # Create extraction script for Linux/Bash
+          cat > deploy/extract-modules.sh << 'SCRIPT'
+          #!/bin/bash
+          cd "$(dirname "$0")"
+          echo "Extracting node_modules.zip..."
+          unzip -q node_modules.zip -d node_modules
+          echo "Generating Prisma client..."
+          npx prisma generate
+          echo "Done! You can delete node_modules.zip now."
+          echo "Run: rm node_modules.zip"
+          SCRIPT
+          chmod +x deploy/extract-modules.sh
+
+          echo "✅ Deployment package ready with compressed node_modules"
+          ls -lh deploy/node_modules.zip
+          du -sh deploy/
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        timeout-minutes: 30
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./deploy/
+          server-dir: /
+          protocol: ftp
+          port: 21
+          security: loose
+          dangerous-clean-slate: false
+          log-level: standard
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.vscode/**
+            **/.idea/**
+
+      - name: Deployment complete
+        run: |
+          echo "✅ Deployment completed successfully!"
+          echo ""
+          echo "📋 Deployed files:"
+          echo "   - .next/ (built application)"
+          echo "   - node_modules.zip (compressed dependencies - ~50-150 MB)"
+          echo "   - public/ (static assets)"
+          echo "   - prisma/ (database schema)"
+          echo "   - app.js (server entry point)"
+          echo "   - web.config (IIS configuration)"
+          echo "   - .env (environment variables)"
+          echo "   - extract-modules.bat (Windows extraction script)"
+          echo "   - extract-modules.sh (Linux extraction script)"
+          echo ""
+          echo "⚠️  IMPORTANT: Extract node_modules on the server!"
+          echo ""
+          echo "Windows (PowerShell/CMD):"
+          echo "   cd h:\root\home\arochabrace-001\www\homehealth"
+          echo "   extract-modules.bat"
+          echo ""
+          echo "OR manually:"
+          echo "   Right-click node_modules.zip → Extract All"
+          echo "   Then run: npx prisma generate"
+          echo ""
+          echo "Linux/Bash:"
+          echo "   cd /path/to/site"
+          echo "   bash extract-modules.sh"
+          echo ""
+          echo "After extraction:"
+          echo "   1. Enable Node.js in SmarterASP.NET Control Panel"
+          echo "   2. Restart the application"
+          echo "   3. Your site should work!"
