@@ -63,12 +63,26 @@ jobs:
           # Create installation script for server
           cat > deploy/install-deps.sh << 'SCRIPT'
           #!/bin/bash
-          cd /wwwroot
+          # Change to your actual deployment directory
+          # Common paths: /wwwroot, h:\root\home\username\www\site, D:\home\site\wwwroot
+          cd "$(dirname "$0")"
+          echo "Installing dependencies in $(pwd)..."
           npm install --production
           npx prisma generate
           echo "Dependencies installed successfully!"
           SCRIPT
           chmod +x deploy/install-deps.sh
+
+          # Create Windows batch script for servers without bash
+          cat > deploy/install-deps.bat << 'BATCH'
+          @echo off
+          echo Installing dependencies...
+          cd /d "%~dp0"
+          call npm install --production
+          call npx prisma generate
+          echo Dependencies installed successfully!
+          pause
+          BATCH
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
