@@ -1,0 +1,117 @@
+name: Deploy to SmarterASP.NET (With node_modules)
+
+# This workflow deploys node_modules via FTP
+# WARNING: This is SLOW (20-40 minutes) but works when server doesn't have npm access
+# Only use this if you cannot run npm install on the server
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60  # Allow up to 1 hour for large FTP upload
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Build Next.js application
+        run: npm run build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL }}
+
+      - name: Create deployment package (INCLUDING node_modules)
+        run: |
+          mkdir -p deploy
+
+          echo "Copying built application..."
+          cp -r .next deploy/
+
+          echo "Copying static assets..."
+          cp -r public deploy/
+
+          echo "Copying database schema..."
+          cp -r prisma deploy/
+
+          echo "Copying node_modules (this takes a while)..."
+          cp -r node_modules deploy/
+
+          echo "Copying configuration files..."
+          cp package.json deploy/
+          cp package-lock.json deploy/
+          cp app.js deploy/
+          cp web.config deploy/
+          cp next.config.ts deploy/ || cp next.config.js deploy/ || true
+          cp tsconfig.json deploy/ || true
+
+          # Create .env file from secrets
+          cat > deploy/.env << EOF
+          NODE_ENV=production
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
+          NEXT_PUBLIC_APP_URL=${{ secrets.NEXT_PUBLIC_APP_URL }}
+          SMTP_HOST=${{ secrets.SMTP_HOST }}
+          SMTP_PORT=${{ secrets.SMTP_PORT }}
+          SMTP_USER=${{ secrets.SMTP_USER }}
+          SMTP_PASS=${{ secrets.SMTP_PASS }}
+          EMAIL_FROM=${{ secrets.EMAIL_FROM }}
+          EOF
+
+          echo "✅ Deployment package ready (including node_modules)"
+          du -sh deploy/
+          du -sh deploy/node_modules/
+
+      - name: Deploy via FTP (SLOW - includes node_modules)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        timeout-minutes: 45
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./deploy/
+          server-dir: /
+          protocol: ftps
+          port: 21
+          dangerous-clean-slate: false
+          log-level: standard
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.vscode/**
+            **/.idea/**
+
+      - name: Deployment complete
+        run: |
+          echo "✅ Full deployment completed (including node_modules)!"
+          echo ""
+          echo "📋 Deployed files:"
+          echo "   - .next/ (built application)"
+          echo "   - node_modules/ (all dependencies - ready to use!)"
+          echo "   - public/ (static assets)"
+          echo "   - prisma/ (database schema)"
+          echo "   - app.js (server entry point)"
+          echo "   - web.config (IIS configuration)"
+          echo "   - .env (environment variables)"
+          echo ""
+          echo "🎯 Next steps in SmarterASP.NET Control Panel:"
+          echo "   1. Enable Node.js in Application Settings"
+          echo "   2. Set PORT environment variable (if needed)"
+          echo "   3. Restart the application"
+          echo "   4. Run database migration: npx prisma db push (if you have terminal access)"
+          echo ""
+          echo "✨ Your site should be ready! No npm install needed."

@@ -79,7 +79,7 @@ After FTP deployment completes, you MUST install dependencies on the server:
 2. Find Terminal/Console (see SERVER_SETUP_GUIDE.md for help)
 3. Run these commands:
    ```bash
-   cd /wwwroot
+   cd h:\root\home\arochabrace-001\www\homehealth
    npm install --production
    npx prisma generate
    npx prisma db push
@@ -87,7 +87,7 @@ After FTP deployment completes, you MUST install dependencies on the server:
 
 **Option 2 - Use Installation Script:**
 ```bash
-cd /wwwroot
+cd h:\root\home\arochabrace-001\www\homehealth
 bash install-deps.sh
 npx prisma db push
 ```
@@ -95,8 +95,14 @@ npx prisma db push
 **Option 3 - Contact Support:**
 If you can't find terminal access, contact SmarterASP.NET support and ask them to run:
 ```bash
-cd /wwwroot && npm install --production && npx prisma generate && npx prisma db push
+cd h:\root\home\arochabrace-001\www\homehealth && npm install --production && npx prisma generate && npx prisma db push
 ```
+
+**Option 4 - Deploy node_modules via FTP (Slow but Works):**
+If support can't help and you have no terminal access, use the alternative workflow:
+- See **[DEPLOY_WITH_MODULES.md](DEPLOY_WITH_MODULES.md)** for instructions
+- Takes 20-40 minutes but uploads everything including node_modules
+- No npm install needed on server!
 
 ### Step 6: Configure SmarterASP.NET Control Panel
 
